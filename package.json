@@ -1,26 +1,13 @@
 {
   "name": "cdn-server",
   "version": "1.0.0",
-  "description": "CDN de mídia via proxy para Xtream - Vercel Serverless",
+  "description": "CDN de mídia via proxy para Xtream",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint src/ api/"
+    "deploy": "vercel --prod"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2"
-  },
-  "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^22.5.0",
-    "eslint": "^9.9.0",
-    "typescript": "^5.5.4",
-    "vercel": "^37.0.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }

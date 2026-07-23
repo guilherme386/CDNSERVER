@@ -4,15 +4,7 @@
   "framework": null,
   "functions": {
     "api/**/*.ts": {
-      "runtime": "@vercel/node@3",
-      "maxDuration": 300
-    },
-    "api/stream/**/*.ts": {
-      "runtime": "@vercel/node@3",
       "maxDuration": 300
     }
-  },
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" }
-  ]
+  }
 }

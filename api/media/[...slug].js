@@ -1,4 +1,4 @@
-const { XtreamService } = require('../lib/xtream');
+const { XtreamService } = require('../../lib/xtream');
 
 function getXtream() {
   return new XtreamService({
@@ -22,56 +22,55 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ error: 'Invalid API key' });
   }
 
-  const { path } = req.query;
-  const fullPath = path ? `/api/media/${path}` : '/api/media';
+  const { slug } = req.query;
+  const parts = (slug || []).join('/');
 
   try {
     const service = getXtream();
 
-    if (fullPath === '/api/media/live') {
+    if (parts === 'live') {
       const categories = await service.getLiveCategories();
       return res.json({ categories });
     }
 
-    if (fullPath.match(/^\/api\/media\/live\/\d+$/)) {
-      const id = fullPath.split('/')[4];
+    if (parts.startsWith('live/')) {
+      const id = parts.split('/')[1];
       const streams = await service.getLiveStreams(id);
       return res.json({ streams });
     }
 
-    if (fullPath === '/api/media/vod') {
+    if (parts === 'vod') {
       const categories = await service.getVodCategories();
       return res.json({ categories });
     }
 
-    if (fullPath.match(/^\/api\/media\/vod\/\d+$/)) {
-      const id = fullPath.split('/')[4];
+    if (parts.startsWith('vod/')) {
+      const id = parts.split('/')[1];
       const streams = await service.getVodStreams(id);
       return res.json({ streams });
     }
 
-    if (fullPath === '/api/media/series') {
+    if (parts === 'series') {
       const categories = await service.getSeriesCategories();
       return res.json({ categories });
     }
 
-    if (fullPath.match(/^\/api\/media\/series\/\d+$/)) {
-      const id = fullPath.split('/')[4];
+    if (parts.match(/^series\/\d+$/) && !parts.includes('info') && !parts.includes('episodes')) {
+      const id = parts.split('/')[1];
       const series = await service.getSeries(id);
       return res.json({ series });
     }
 
-    if (fullPath.match(/^\/api\/media\/series\/\d+\/info$/)) {
-      const id = fullPath.split('/')[4];
+    if (parts.match(/^series\/\d+\/info$/)) {
+      const id = parts.split('/')[1];
       const info = await service.getSeriesInfo(id);
       if (!info) return res.status(404).json({ error: 'Series not found' });
       return res.json({ info });
     }
 
-    if (fullPath.match(/^\/api\/media\/series\/\d+\/episodes\/\d+$/)) {
-      const parts = fullPath.split('/');
-      const seriesId = parts[4];
-      const season = parseInt(parts[6], 10);
+    if (parts.match(/^series\/\d+\/episodes\/\d+$/)) {
+      const seriesId = parts.split('/')[1];
+      const season = parseInt(parts.split('/')[3], 10);
       const episodes = await service.getSeriesEpisodes(seriesId, season);
       return res.json({ episodes });
     }

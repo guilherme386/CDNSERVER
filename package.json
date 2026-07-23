@@ -1,12 +1,6 @@
 {
   "name": "cdn-server",
-  "version": "1.0.0",
-  "description": "CDN de mídia via proxy para Xtream",
   "private": true,
-  "scripts": {
-    "dev": "vercel dev",
-    "deploy": "vercel --prod"
-  },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
   }

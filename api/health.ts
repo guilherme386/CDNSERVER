@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { json, cors } from '../src/shared/utils/http.js';
-import { ProxyService } from '../src/shared/services/proxy.js';
+import { json, cors } from '../src/shared/utils/http';
+import { ProxyService } from '../src/shared/services/proxy';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   cors(res, req.headers.origin as string);

@@ -1,8 +1,8 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { json, error, cors, validateApiKey, readBody, checkRateLimit } from '../src/shared/utils/http.js';
-import { createMediaToken } from '../src/shared/utils/token.js';
-import { XtreamService } from '../src/shared/services/xtream.js';
-import { logger } from '../src/shared/utils/logger.js';
+import { json, error, cors, validateApiKey, readBody, checkRateLimit } from '../src/shared/utils/http';
+import { createMediaToken } from '../src/shared/utils/token';
+import { XtreamService } from '../src/shared/services/xtream';
+import { logger } from '../src/shared/utils/logger';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   cors(res, req.headers.origin as string);

@@ -1,6 +1,4 @@
 {
-  "buildCommand": "tsc",
-  "outputDirectory": "dist",
   "framework": null,
   "functions": {
     "api/**/*.ts": {

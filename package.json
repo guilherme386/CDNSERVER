@@ -6,8 +6,6 @@
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "build": "tsc",
-    "deploy": "vercel --prod",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/ api/"
   },

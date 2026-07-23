@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { json, error, cors, validateApiKey, checkRateLimit } from '../src/shared/utils/http.js';
-import { XtreamService } from '../src/shared/services/xtream.js';
-import { logger } from '../src/shared/utils/logger.js';
+import { json, error, cors, validateApiKey, checkRateLimit } from '../src/shared/utils/http';
+import { XtreamService } from '../src/shared/services/xtream';
+import { logger } from '../src/shared/utils/logger';
 
 const xtream = () => new XtreamService({
   url: process.env.XTREAM_URL || '',

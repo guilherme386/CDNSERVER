@@ -1,8 +1,8 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { verifyMediaToken, isTokenExpired, getTokenRemainingTime } from '../../src/shared/utils/token.js';
-import { json, error, cors } from '../../src/shared/utils/http.js';
-import { logger } from '../../src/shared/utils/logger.js';
-import type { TokenPayload } from '../../src/shared/types/index.js';
+import { verifyMediaToken, isTokenExpired, getTokenRemainingTime } from '../../src/shared/utils/token';
+import { json, error, cors } from '../../src/shared/utils/http';
+import { logger } from '../../src/shared/utils/logger';
+import type { TokenPayload } from '../../src/shared/types';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   cors(res, req.headers.origin as string);
